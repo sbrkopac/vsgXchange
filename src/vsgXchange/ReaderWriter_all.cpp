@@ -10,6 +10,10 @@
 #    include "../freetype/FreeTypeFont.h"
 #endif
 
+#ifdef USE_GDAL
+#    include "../gdal/ReaderWriter_gdal.h"
+#endif
+
 #ifdef USE_OPENSCENEGRAPH
 #    include "../osg/ReaderWriter_osg.h"
 #endif
@@ -24,6 +28,9 @@ ReaderWriter_all::ReaderWriter_all()
     add(vsgXchange::ReaderWriter_cpp::create());
 #ifdef USE_FREETYPE
     add(vsgXchange::ReaderWriter_freetype::create());
+#endif
+#ifdef USE_GDAL
+    add(vsgXchange::ReaderWriter_gdal::create());
 #endif
 #ifdef USE_OPENSCENEGRAPH
     add(vsgXchange::ReaderWriter_osg::create());

@@ -31,6 +31,17 @@ if(FREETYPE_FOUND)
     set(EXTRA_DEFINES ${EXTRA_DEFINES} USE_FREETYPE)
 endif()
 
+# add freetype if vailable
+find_package(GDAL)
+if(GDAL_FOUND)
+    set(SOURCES ${SOURCES}
+        gdal/ReaderWriter_gdal.cpp
+    )
+    set(EXTRA_INCLUDES ${EXTRA_INCLUDES} ${GDAL_INCLUDE_DIRS})
+    set(EXTRA_LIBRARIES ${EXTRA_LIBRARIES} ${GDAL_LIBRARIES})
+    set(EXTRA_DEFINES ${EXTRA_DEFINES} USE_GDAL)
+endif()
+
 # add optional OpenSceneGraph components
 include(osg/build_vars.cmake)
 
